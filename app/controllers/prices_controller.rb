@@ -10,6 +10,7 @@
   end
 
   def self.new_browser
+    p ENV["CHROME_SHIM"]
     options = Selenium::WebDriver::Chrome::Options.new
     options.binary = ENV["CHROME_SHIM"]
     options.add_argument('--no-sandbox')
