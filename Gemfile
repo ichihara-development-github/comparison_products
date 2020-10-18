@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.6.0"
+ruby "2.6.5"
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -13,6 +13,8 @@ gem 'puma', '~> 3.7'
 
 gem 'selenium-webdriver'
 gem 'ffi'
+
+gem 'byebug'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -29,10 +31,6 @@ gem 'ffi'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'sqlite3'
-end
-
-group :development do
-  gem 'byebug'
 end
 
 
