@@ -9,7 +9,7 @@
     @price = Price.find_by(name: params[:name])
   end
 
-  def new_browser
+  def self.new_browser
     options = Selenium::WebDriver::Chrome::Options.new
     options.binary = ENV["CHROME_SHIM"]
     options.add_argument('--no-sandbox')
@@ -24,7 +24,7 @@
   end
 
 
-  def self.create
+  def create
     driver = new_browser
     @prices = collect_amazon(@price.name, driver)
     average = @prices.sum / @prices.length
