@@ -12,7 +12,6 @@ module Scraping
   options.add_argument('headless')
   $driver = Selenium::WebDriver.for :chrome, options: options
 
-
   RAKUTEN_URL = "https://www.rakuten.co.jp/"
   AMAZON_URL = "https://www.amazon.co.jp/"
 
