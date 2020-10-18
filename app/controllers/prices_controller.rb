@@ -20,7 +20,7 @@
     max = @prices.max
     min = @prices.min
     @price.update(average:average, max: max, min: min)
-    render json:{name: @price.name,average: @price.average max: @price.max, min: @price.min}, adapter: :json
+    render json: {name: @price.name,average: @price.average, max: @price.max, min: @price.min}, adapter: :json
   end
 
 
