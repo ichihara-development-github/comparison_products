@@ -10,7 +10,7 @@
   end
 
   def index
-    render json: "access successful!", adapter: :json if price.create
+    render json: "access successful!", adapter: :json
   end
 
 
