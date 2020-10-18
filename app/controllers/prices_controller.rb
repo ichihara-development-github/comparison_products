@@ -26,7 +26,7 @@
 
   def input
     price = Price.new(name: params[:name])
-    render json: "#{price} has created", adapter: :json if price.create
+    render json: "#{price} has created", adapter: :json if price.save
   end
 
   def output
