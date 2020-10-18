@@ -12,7 +12,6 @@
 
   def create
     @prices = collect_amazon(@price.name)
-    p @prices
     average = @prices.sum / @prices.length
     max = @prices.max
     min = @prices.min
