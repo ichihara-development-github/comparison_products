@@ -109,6 +109,7 @@ GEM
       thread_safe (~> 0.1)
     tzinfo-data (1.2020.3)
       tzinfo (>= 1.0.0)
+    webdriver (0.13.0)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -125,6 +126,7 @@ DEPENDENCIES
   selenium-webdriver
   sqlite3
   tzinfo-data
+  webdriver
 
 RUBY VERSION
    ruby 2.6.5p114
