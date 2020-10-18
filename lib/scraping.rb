@@ -7,9 +7,8 @@ module Scraping
   require "selenium-webdriver"
 
   options = Selenium::WebDriver::Chrome::Options.new
-  options.binary = ENV.fetch("CHROME_SHIM")
+  options.binary = ENV["CHROME_SHIM"]
   options.add_argument('headless')
-  driver = Selenium::WebDriver.for :chrome, options: options
 
 
   RAKUTEN_URL = "https://www.rakuten.co.jp/"
@@ -20,7 +19,7 @@ module Scraping
   end
 
   def collect_amazon(search_elm)
-    d = Selenium::WebDriver.for :chrome
+    d = Selenium::WebDriver.for :chrome, options: options
     d.get(AMAZON_URL)
     search_box = d.find_element(:id, 'twotabsearchtextbox')
     btn = d.find_element(:xpath, '//*[@id="nav-search"]/form/div[3]/div')
