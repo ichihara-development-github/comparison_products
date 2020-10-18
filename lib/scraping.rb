@@ -9,8 +9,6 @@ module Scraping
   RAKUTEN_URL = "https://www.rakuten.co.jp/"
   AMAZON_URL = "https://www.amazon.co.jp/"
 
-  driver = browser
-
   def browser
     options = Selenium::WebDriver::Chrome::Options.new
     options.binary = ENV["CHROME_SHIM"]
@@ -20,6 +18,8 @@ module Scraping
     options.add_argument("--remote-debugging-port=9222")
     driver = Selenium::WebDriver.for :chrome, options: options
   end
+
+    driver = browser
 
   def collect_amazon(search_elm)
     driver.get(AMAZON_URL)
