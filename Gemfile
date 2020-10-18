@@ -15,9 +15,6 @@ gem 'selenium-webdriver'
 gem 'ffi'
 
 gem 'byebug'
-
-gem 'selenium-webdriver'
-gem "chromedriver-helper"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
