@@ -20,13 +20,13 @@
     max = @prices.max
     min = @prices.min
     @price.update(average:average, max: max, min: min)
-    render json: @price, adapter: :json
+    render json:{name: @price.name,average: @price.average max: @price.max, min: @price.min}, adapter: :json
   end
 
 
   def input
     price = Price.new(name: params[:name])
-    render json: "#{price} has created", adapter: :json if price.save
+    render json: "#{price.name} has created", adapter: :json if price.save
   end
 
   def output
