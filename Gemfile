@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
 ruby "2.6.5"
-# git_source(:github) do |repo_name|
-#   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-#   "https://github.com/#{repo_name}.git"
-# end
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.7'
@@ -29,8 +29,6 @@ gem 'ffi'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'sqlite3'
-  gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
 end
 
 group :development do
@@ -41,3 +39,6 @@ end
 group :production do
   gem 'pg'
 end
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

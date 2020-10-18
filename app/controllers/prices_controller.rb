@@ -9,6 +9,10 @@
     @price = Price.find_by(name: params[:name])
   end
 
+  def index
+    render json: "access successful!", adapter: :json if price.create
+  end
+
 
   def create
     @prices = collect_amazon(@price.name)

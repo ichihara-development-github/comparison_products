@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   get "price/:name", to: "prices#output"
   post "price/new/:name", to: "prices#input"
   post "price/create/:name", to: "price#inout"
+
+  root  to: "prices#index"
 end
