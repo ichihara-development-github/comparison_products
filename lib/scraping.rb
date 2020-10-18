@@ -6,6 +6,11 @@ module Scraping
   require "byebug"
   require "selenium-webdriver"
 
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.binary = ENV.fetch("CHROME_SHIM")
+  options.add_argument('headless')
+  driver = Selenium::WebDriver.for :chrome, options: options
+
 
   RAKUTEN_URL = "https://www.rakuten.co.jp/"
   AMAZON_URL = "https://www.amazon.co.jp/"
