@@ -15,12 +15,7 @@
 
 
   def create
-    options = Selenium::WebDriver::Chrome::Options.new
-    options.binary = ENV["CHROME_SHIM"]
-    options.add_argument('--disable-gpu')
-    options.add_argument('--headless')
-    options.add_argument("--remote-debugging-port=9222")
-    @driver = Selenium::WebDriver.for :chrome, options: options
+    @driver = browser
 
     @prices = collect_amazon(@price.name,@driver)
     average = @prices.sum / @prices.length
