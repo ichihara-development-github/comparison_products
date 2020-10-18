@@ -9,6 +9,8 @@ module Scraping
   RAKUTEN_URL = "https://www.rakuten.co.jp/"
   AMAZON_URL = "https://www.amazon.co.jp/"
 
+  driver = browser
+
   def browser
     options = Selenium::WebDriver::Chrome::Options.new
     options.binary = ENV["CHROME_SHIM"]
@@ -19,7 +21,7 @@ module Scraping
     driver = Selenium::WebDriver.for :chrome, options: options
   end
 
-  def collect_amazon(search_elm,driver)
+  def collect_amazon(search_elm)
     driver.get(AMAZON_URL)
     search_box = driver.find_element(:id, 'twotabsearchtextbox')
     btn = driver.find_element(:xpath, '//*[@id="nav-search"]/form/div[3]/div')

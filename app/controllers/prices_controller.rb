@@ -15,9 +15,7 @@
 
 
   def create
-    @driver = browser
-
-    @prices = collect_amazon(@price.name,@driver)
+    @prices = collect_amazon(@price.name)
     average = @prices.sum / @prices.length
     max = @prices.max
     min = @prices.min
