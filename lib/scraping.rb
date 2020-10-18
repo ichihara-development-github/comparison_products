@@ -8,8 +8,8 @@ module Scraping
 
   options = Selenium::WebDriver::Chrome::Options.new
   options.binary = ENV["CHROME_SHIM"]
-  options.add_argument('disable-gpu')
-  options.add_argument('headless')
+  options.add_argument('--disable-gpu')
+  options.add_argument('--headless')
   $driver = Selenium::WebDriver.for :chrome, options: options
 
   RAKUTEN_URL = "https://www.rakuten.co.jp/"
