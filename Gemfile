@@ -32,7 +32,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  
 end
 
 
