@@ -3,7 +3,6 @@
   class PricesController < ApplicationController
   include Scraping
 
-
   before_action :set_price, before: [:output, :create]
 
   def set_price
@@ -16,7 +15,9 @@
 
 
   def create
-    @prices = collect_amazon(@price.name)
+    @driver = browser
+    
+    @prices = collect_amazon(@price.name,@driver)
     average = @prices.sum / @prices.length
     max = @prices.max
     min = @prices.min
