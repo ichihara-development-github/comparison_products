@@ -3,6 +3,7 @@
   class PricesController < ApplicationController
   include Scraping
 
+
   before_action :set_price, before: [:output, :create]
 
   def set_price
