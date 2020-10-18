@@ -24,7 +24,7 @@
   end
 
 
-  def create
+  def self.create
     driver = new_browser
     @prices = collect_amazon(@price.name, driver)
     average = @prices.sum / @prices.length
