@@ -9,19 +9,8 @@ module Scraping
   RAKUTEN_URL = "https://www.rakuten.co.jp/"
   AMAZON_URL = "https://www.amazon.co.jp/"
 
-  def browser
-    options = Selenium::WebDriver::Chrome::Options.new
-    options.binary = ENV["CHROME_SHIM"]
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-gpu')
-    options.add_argument('--headless')
-    options.add_argument("--remote-debugging-port=9222")
-    driver = Selenium::WebDriver.for :chrome, options: options
-  end
 
-    driver = browser
-
-  def collect_amazon(search_elm)
+  def collect_amazon(search_elm, driver)
     driver.get(AMAZON_URL)
     search_box = driver.find_element(:id, 'twotabsearchtextbox')
     btn = driver.find_element(:xpath, '//*[@id="nav-search"]/form/div[3]/div')
@@ -31,12 +20,12 @@ module Scraping
     select = Selenium::WebDriver::Support::Select.new(driver.find_element(:id, "s-result-sort-select"))
     select.select_by(:value, "review-rank")
     sleep 3
-    amazon = scrap_price("a-price-whole")
+    amazon = scrap_price("a-price-whole", driver)
     driver.close
     amazon
   end
 
-  def scrap_price(elm)
+  def scrap_price(elm, driver)
     prices = driver.find_elements(:class, elm)
     price_list = prices.map{|price| price.text.delete!("￥,").to_i}
   end

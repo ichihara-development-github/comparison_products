@@ -9,13 +9,24 @@
     @price = Price.find_by(name: params[:name])
   end
 
+  def new_browser
+    options = Selenium::WebDriver::Chrome::Options.new
+    options.binary = ENV["CHROME_SHIM"]
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--headless')
+    options.add_argument("--remote-debugging-port=9222")
+    driver = Selenium::WebDriver.for :chrome, options: options
+  end
+
   def index
     render json: "access successful!", adapter: :json
   end
 
 
   def create
-    @prices = collect_amazon(@price.name)
+    driver = new_browser
+    @prices = collect_amazon(@price.name, driver)
     average = @prices.sum / @prices.length
     max = @prices.max
     min = @prices.min
