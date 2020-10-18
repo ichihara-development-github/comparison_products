@@ -8,6 +8,7 @@ module Scraping
 
   options = Selenium::WebDriver::Chrome::Options.new
   options.binary = ENV["CHROME_SHIM"]
+  options.add_argument('disable-gpu')
   options.add_argument('headless')
 
 
