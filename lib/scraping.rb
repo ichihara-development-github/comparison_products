@@ -11,7 +11,6 @@ module Scraping
 
 
   def collect_amazon(search_elm, driver)
-    p "hello"
     driver.get(AMAZON_URL)
     search_box = driver.find_element(:id, 'twotabsearchtextbox')
     btn = driver.find_element(:xpath, '//*[@id="nav-search"]/form/div[3]/div')

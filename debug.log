@@ -200,3 +200,4 @@
 [1015/001248.655:ERROR:exception_snapshot_win.cc(99)] thread ID 19356 not found in process
 [1015/001248.708:ERROR:process_reader_win.cc(123)] NtOpenThread: {アクセス拒否} プロセスはオブジェクトのアクセスを要求しましたが、アクセス権が与えられていません。 (0xc0000022)
 [1015/001248.708:ERROR:exception_snapshot_win.cc(99)] thread ID 18924 not found in process
+[1021/154352.303:ERROR:directory_reader_win.cc(43)] FindFirstFile: 指定されたパスが見つかりません。 (0x3)
