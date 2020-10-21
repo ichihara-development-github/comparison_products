@@ -40,12 +40,12 @@
     average = @prices.sum / @prices.length
     max = @prices.max
     min = @prices.min
-    @price.update(average:average, max: max, min: min
+    @price.update(average:average, max: max, min: min)
   end
 
   def input
     price = Price.new(name: params[:name])
-    render json: price, adapter: :json if price.save
+    p "#{price.name} has created!" if price.save
   end
 
   def output
