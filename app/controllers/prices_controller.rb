@@ -17,13 +17,16 @@
   end
 
   def new_browser
+    p "1"
     options = Selenium::WebDriver::Chrome::Options.new
+    p "2"
     options.binary = ENV['GOOGLE_CHROME_SHIM']
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-gpu')
     options.add_argument('--headless')
     options.add_argument('--remote-debugging-port=9222')
     options.add_argument('--window-size=144,100')
+    p "3"
     driver = Selenium::WebDriver.for :chrome, options: options
   end
 
@@ -33,6 +36,7 @@
 
 
   def create
+    p "0"
     @price = Price.find_by(name: params[:name])
     driver = new_browser
     @prices = collect_amazon(@price.name, driver)
