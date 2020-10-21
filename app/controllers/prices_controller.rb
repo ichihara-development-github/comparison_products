@@ -5,6 +5,7 @@
 
   before_action :set_price, only: [:output, :destroy]
   before_action :authenticate, except: [:new_browser, :index]
+  after_action :create, only: :input
 
   AUTHENTICATION_TOKEN = "password"
 
@@ -17,16 +18,13 @@
   end
 
   def new_browser
-    p "1"
     options = Selenium::WebDriver::Chrome::Options.new
-    p "2"
     options.binary = ENV['GOOGLE_CHROME_SHIM']
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-gpu')
     options.add_argument('--headless')
     options.add_argument('--remote-debugging-port=9222')
     options.add_argument('--window-size=144,100')
-    p "3"
     driver = Selenium::WebDriver.for :chrome, options: options
   end
 
@@ -36,21 +34,18 @@
 
 
   def create
-    p "0"
     @price = Price.find_by(name: params[:name])
     driver = new_browser
     @prices = collect_amazon(@price.name, driver)
     average = @prices.sum / @prices.length
     max = @prices.max
     min = @prices.min
-    @price.update(average:average, max: max, min: min)
-    p @prices
+    @price.update(average:average, max: max, min: min
   end
 
   def input
-    render json: "hello", adapter: :json
     price = Price.new(name: params[:name])
-    create if price.save
+    render json: price, adapter: :json if price.save
   end
 
   def output
