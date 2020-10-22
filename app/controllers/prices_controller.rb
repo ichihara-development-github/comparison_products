@@ -45,9 +45,7 @@
 
   def input
     price = Price.new(name: params[:name])
-    if price.save
-      p "#{price.name} has created!"
-    end
+    p "#{price.name} has created!" if price.save
   end
 
   def output
