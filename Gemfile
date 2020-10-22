@@ -14,6 +14,8 @@ gem 'puma', '~> 3.7'
 gem 'selenium-webdriver'
 gem 'ffi'
 
+gem 'sidekiq'
+
 gem 'byebug'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
