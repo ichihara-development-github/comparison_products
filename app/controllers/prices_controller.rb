@@ -5,7 +5,6 @@
 
   before_action :set_price, only: [:output, :destroy]
   before_action :authenticate, except: [:new_browser, :index]
-  after_action :create, only: :input
 
   AUTHENTICATION_TOKEN = "password"
 
