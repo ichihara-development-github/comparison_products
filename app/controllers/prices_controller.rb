@@ -1,46 +1,31 @@
-  require "./lib/scraping"
+class PricesController < ApplicationController
 
-  class PricesController < ApplicationController
-  include Scraping
-
+  before_action :exist_price?, only: [:update, :destroy]
   before_action :set_price, only: [:output, :destroy]
   before_action :authenticate, except: [:new_browser, :index]
   after_action :create, only: :input
 
-  AUTHENTICATION_TOKEN = "password"
+  AUTHENTICATION_TOKEN = ENV['AUTHENTICATION_TOKEN']
 
   def authenticate
-    render text: "不正なリクエストです" unless params[:token] == AUTHENTICATION_TOKEN
+    render json: "不正なリクエストです" unless params[:token] == AUTHENTICATION_TOKEN
   end
 
   def set_price
     @price = Price.find_by(name: params[:name])
   end
 
-  def new_browser
-    options = Selenium::WebDriver::Chrome::Options.new
-    options.binary = ENV['GOOGLE_CHROME_SHIM']
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-gpu')
-    options.add_argument('--headless')
-    options.add_argument('--remote-debugging-port=9222')
-    options.add_argument('--window-size=144,100')
-    driver = Selenium::WebDriver.for :chrome, options: options
+  def exist_price?
+    name = params[:name]
+    render text: "#{name}が見つかりません" unless Price.find_by(name: name)
   end
 
   def index
     render json: "hello", adapter: :json
   end
 
-
   def create
-    @price = Price.find_by(name: params[:name])
-    driver = new_browser
-    @prices = collect_amazon(@price.name, driver)
-    average = @prices.sum / @prices.length
-    max = @prices.max
-    min = @prices.min
-    @price.update(average:average, max: max, min: min)
+    PriceCreateWorker.perform_async(params[:name])
   end
 
   def input
@@ -52,9 +37,15 @@
     render json: @price, adapter: :json
   end
 
+  def update
+    @price = Price.find_by(name: params[:old_name])
+    text = "--------------------#{@price.name} is updated---------------------"
+    render json: text, adapter: :json if @price.update(name: params[:name])
+  end
+
   def destroy
-    text = "--------------------#{price.name} has deleted---------------------"
-    render json: text, adapter: :json if price.destroy
+    text = "--------------------#{@price.name} is deleted---------------------"
+    render json: text, adapter: :json if @price.destroy
   end
 
 
