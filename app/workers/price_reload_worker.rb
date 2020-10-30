@@ -1,12 +1,12 @@
 class PriceReloadWorker
   include Scraping
 
-  def perform
+  def perform(prices)
     driver = new_browser
     driver.get(AMAZON_URL)
     search_box = driver.find_element(:id, 'twotabsearchtextbox')
     btn = driver.find_element(:xpath, '//*[@id="nav-search"]/form/div[3]/div')
-    @prices.each do |price|
+    prices.each do |price|
       search_box.send_keys(product)
       btn.click
       sleep 3

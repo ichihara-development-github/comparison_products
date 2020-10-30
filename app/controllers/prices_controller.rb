@@ -48,5 +48,9 @@ class PricesController < ApplicationController
     render json: text, adapter: :json if @price.destroy
   end
 
+  def self.prices_reload
+    prices = Product.all.pluck(:name)
+    PriceReloadWorker.perform(prices)
+  end
 
 end
