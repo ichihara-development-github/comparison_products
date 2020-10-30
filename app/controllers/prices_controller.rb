@@ -50,7 +50,7 @@ class PricesController < ApplicationController
 
   def self.prices_reload
     prices = Price.pluck(:name)
-    PriceReloadWorker.perform_asyncs(prices)
+    PriceReloadWorker.perform_async(prices)
   end
 
 end
