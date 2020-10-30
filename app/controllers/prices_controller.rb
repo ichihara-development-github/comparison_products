@@ -49,7 +49,7 @@ class PricesController < ApplicationController
   end
 
   def self.prices_reload
-    prices = Product.all.pluck(:name)
+    prices = Price.all.pluck(:name)
     PriceReloadWorker.perform(prices)
   end
 
