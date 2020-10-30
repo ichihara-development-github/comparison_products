@@ -1,4 +1,4 @@
 desc "refresh all product prices"
-task :relaod_prices => :production do
+task :reload_prices => :environment do
   PricesController.prices_reload
 end
