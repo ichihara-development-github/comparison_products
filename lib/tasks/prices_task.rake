@@ -1,6 +1,6 @@
 namespace :prices_task do
-  desk "refresh all product prices"
-  task :relaod => :production do
+  desc "refresh all product prices"
+  task :relaod_prices => :production do
     PricesController.prices_reload
   end
 end
