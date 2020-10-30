@@ -1,4 +1,5 @@
 class PriceReloadWorker
+  include Sidekiq::Worker
   include Scraping
 
   def perform(prices)
