@@ -16,8 +16,6 @@ gem 'ffi'
 
 gem 'sidekiq'
 
-gem 'unicorn'
-
 gem 'byebug'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
@@ -40,6 +38,8 @@ end
 
 group :production do
   gem 'pg'
+  gem 'unicorn'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,4 +1,4 @@
 class Price < ApplicationRecord
 
-  validates unique: :true
+  validates :name, :presence true, :uniqueness true
 end
