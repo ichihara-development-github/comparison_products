@@ -34,6 +34,7 @@ class PricesController < ApplicationController
   end
 
   def output
+    p @price
     render json: @price, adapter: :json
   end
 
