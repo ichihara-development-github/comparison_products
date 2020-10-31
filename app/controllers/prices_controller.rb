@@ -34,8 +34,8 @@ class PricesController < ApplicationController
   end
 
   def output
-    p @price
     render json: @price, adapter: :json
+    PriceCreateWorker.perform_async(params[:name]) unless @price
   end
 
   def update
