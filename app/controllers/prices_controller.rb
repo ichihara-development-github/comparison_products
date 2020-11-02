@@ -42,6 +42,7 @@ class PricesController < ApplicationController
     @price = Price.find_by(name: params[:old_name])
     text = "--------------------#{@price.name} is updated---------------------"
     render json: text, adapter: :json if @price.update(name: params[:name])
+    PriceCreateWorker.perform_async(params[:name])
   end
 
   def destroy
