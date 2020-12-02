@@ -6,7 +6,6 @@ module Scraping
   require "byebug"
   require "selenium-webdriver"
 
-  RAKUTEN_URL = "https://www.rakuten.co.jp/"
   AMAZON_URL = "https://www.amazon.co.jp/"
 
   def new_browser
